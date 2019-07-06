@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+        <RootNamespace>Imprise.MediatR.Extensions.Caching.Sample.WebApi</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.App" />
+        <PackageReference Include="MediatR" Version="7.0.0" />
+        <PackageReference Include="Scrutor" Version="3.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Imprise.MediatR.Extensions.Caching\Imprise.MediatR.Extensions.Caching.csproj" />
+    </ItemGroup>
+
+</Project>

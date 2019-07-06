@@ -1,0 +1,49 @@
+# This file can be used as is in JetBrains Rider to send requests to the WebApi. If you don't have Rider (and if not,
+# why not? :-), then PostMan is a good alternative to sent the requests from.
+
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+
+# Get list of users stored in memory
+GET http://localhost:5000/users
+Accept: application/json
+
+###
+
+# Get User 2, before update is Bob Brolly
+GET http://localhost:5000/users/2
+Accept: application/json
+
+###
+
+# Add a new user, should invalidate GetUsers and now return 3, then put that in cache 
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+  "firstName": "Charlie",
+  "lastName": "Chipper"
+}
+
+###
+
+# Update a user, should invalidate both GetUser(2) and GetUsers 
+PUT http://localhost:5000/users
+Content-Type: application/json
+
+{
+  "userId": 2,
+  "firstName": "David",
+  "lastName": "Dapple"
+}
+
+###
+
+# Delete a user, should invalidate both GetUser(3) and GetUsers 
+DELETE http://localhost:5000/users/3
+Content-Type: application/json
+
+###
