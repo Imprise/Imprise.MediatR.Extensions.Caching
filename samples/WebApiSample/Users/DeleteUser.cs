@@ -1,13 +1,8 @@
-using System.Threading;
-using System.Threading.Tasks;
 using MediatR;
 
 namespace WebApiSample.Users
 {
-    public class DeleteUser : IRequest
-    {
-        public int UserId { get; set; }
-    }
+    public record DeleteUser(int UserId) : IRequest;
 
     public class DeleteUserHandler : IRequestHandler<DeleteUser, Unit>
     {

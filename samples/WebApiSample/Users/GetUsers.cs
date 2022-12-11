@@ -1,16 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using Imprise.MediatR.Extensions.Caching;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 
 namespace WebApiSample.Users
 {
-    public class GetUsers : IRequest<List<User>>
-    {
-    }
+    public record GetUsers() : IRequest<List<User>>;
 
     public class GetUsersHandler : IRequestHandler<GetUsers, List<User>>
     {

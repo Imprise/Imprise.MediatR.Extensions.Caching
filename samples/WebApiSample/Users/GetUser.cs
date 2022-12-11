@@ -1,20 +1,14 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Imprise.MediatR.Extensions.Caching;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 
 namespace WebApiSample.Users
 {
-    public class GetUser : IRequest<User>
-    {
-        public int UserId { get; set; }
-    }
+    public record GetUser(int UserId) : IRequest<User?>;
 
-    public class GetUserHandler : IRequestHandler<GetUser, User>
+    public class GetUserHandler : IRequestHandler<GetUser, User?>
     {
-        public Task<User> Handle(GetUser request, CancellationToken cancellationToken)
+        public Task<User?> Handle(GetUser request, CancellationToken cancellationToken)
         {
             return Task.FromResult(
                 UserList.Users.Find(u => u.Id == request.UserId)
@@ -31,7 +25,7 @@ namespace WebApiSample.Users
     /// The UserId property on the request will be used as the cache key identifier so each different user will be
     /// cached separately based on their user id.
     /// </summary>
-    public class GetUserCache : DistributedCache<GetUser, User>
+    public class GetUserCache : DistributedCache<GetUser, User?>
     {
         /// <summary>
         /// Each time the cached response is retrieved another 30 minutes will be added to the time before the cached
@@ -59,9 +53,9 @@ namespace WebApiSample.Users
     /// The UserId property on the update request will be used as the cache key identifier to identify the cached response
     /// that will be removed.
     /// </summary>
-    public class UpdateUserGetUserCacheInvalidator : CacheInvalidator<UpdateUser, GetUser, User>
+    public class UpdateUserGetUserCacheInvalidator : CacheInvalidator<UpdateUser, GetUser, User?>
     {
-        public UpdateUserGetUserCacheInvalidator(ICache<GetUser, User> cache) : base(cache)
+        public UpdateUserGetUserCacheInvalidator(ICache<GetUser, User?> cache) : base(cache)
         {
         }
 

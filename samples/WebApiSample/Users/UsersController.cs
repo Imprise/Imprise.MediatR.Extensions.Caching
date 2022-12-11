@@ -8,7 +8,7 @@ namespace WebApiSample.Users
     /// Controller for Users with Get by ID, Get all, Post, Put and Delete methods
     /// </summary>
     [Route("users")]
-    public class UsersController : Controller
+    public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;
 
@@ -26,10 +26,7 @@ namespace WebApiSample.Users
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser([FromRoute] int id)
         {
-            return Ok(await _mediator.Send(new GetUser
-            {
-                UserId = id
-            }));
+            return Ok(await _mediator.Send(new GetUser(id)));
         }
 
         [HttpPost]
@@ -49,10 +46,7 @@ namespace WebApiSample.Users
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] int id)
         {
-            await _mediator.Send(new DeleteUser
-            {
-                UserId = id
-            });
+            await _mediator.Send(new DeleteUser(id));
             return Ok();
         }
     }

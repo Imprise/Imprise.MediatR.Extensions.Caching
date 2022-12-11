@@ -1,14 +1,12 @@
-using System.Threading;
-using System.Threading.Tasks;
 using MediatR;
 
 namespace WebApiSample.Users
 {
-    public class UpdateUser : IRequest
+    public record UpdateUser : IRequest
     {
         public int UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
     }
 
     public class UpdateUserHandler : IRequestHandler<UpdateUser, Unit>

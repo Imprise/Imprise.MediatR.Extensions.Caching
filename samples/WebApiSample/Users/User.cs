@@ -1,5 +1,3 @@
-using System;
-
 namespace WebApiSample.Users
 {
     // when a class instance could be added to a distributed cache using binary serialisation,
@@ -8,7 +6,7 @@ namespace WebApiSample.Users
     public class User
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
     }
 }
